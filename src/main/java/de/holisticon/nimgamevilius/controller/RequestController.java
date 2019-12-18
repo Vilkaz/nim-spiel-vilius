@@ -1,6 +1,7 @@
 package de.holisticon.nimgamevilius.controller;
 
 import de.holisticon.nimgamevilius.model.Game;
+import de.holisticon.nimgamevilius.model.GameStarter;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -10,13 +11,13 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("api")
 public class RequestController {
 
-    @RequestMapping("/hello")
+    @GetMapping("/hello")
     public String hello() {
         return "Hello";
     }
 
-    @RequestMapping("/start")
-    public Game play() {
+    @PostMapping("/start")
+    public Game play(@RequestBody GameStarter starter) {
         return new Game();
     }
 
