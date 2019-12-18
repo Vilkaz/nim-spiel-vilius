@@ -1,4 +1,4 @@
-package de.holisticon.nimspielvilius;
+package de.holisticon.nimgamevilius;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
