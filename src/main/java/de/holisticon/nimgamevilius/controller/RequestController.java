@@ -1,7 +1,9 @@
 package de.holisticon.nimgamevilius.controller;
 
 import de.holisticon.nimgamevilius.model.Game;
-import de.holisticon.nimgamevilius.model.GameStarter;
+import de.holisticon.nimgamevilius.model.GameHandler;
+import de.holisticon.nimgamevilius.model.Response;
+import de.holisticon.nimgamevilius.model.Settings;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -17,8 +19,9 @@ public class RequestController {
     }
 
     @PostMapping("/start")
-    public Game play(@RequestBody GameStarter starter) {
-        return new Game();
+    public Response play(@RequestBody Settings starter) {
+        Game game = GameHandler.startNewGame(starter);
+        return new Response(game);
     }
 
 }

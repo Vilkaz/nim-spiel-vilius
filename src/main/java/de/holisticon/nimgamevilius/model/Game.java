@@ -1,13 +1,19 @@
 package de.holisticon.nimgamevilius.model;
 
 public class Game {
-    private Strategy strategy;
     private int matchesInStack;
     private String message;
+    private Settings settings;
 
-    public Strategy getStrategy() {
-        return strategy;
+    private Game() {
+        // no initialisation
     }
+
+    Game(Settings settings) {
+        this.settings = settings;
+        matchesInStack = 13;
+    }
+
 
     public int getMatchesInStack() {
         return matchesInStack;
@@ -15,5 +21,9 @@ public class Game {
 
     public String getMessage() {
         return message;
+    }
+
+    public Settings getSettings() {
+        return settings;
     }
 }

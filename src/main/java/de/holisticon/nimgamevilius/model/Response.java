@@ -1,10 +1,18 @@
 package de.holisticon.nimgamevilius.model;
 
 public class Response {
-    private int amountOfMatches;
+    private Game game;
+    private String message;
 
-    public int getAmountOfMatches() {
-        return amountOfMatches;
+    public Response(Game game) {
+        this.game = game;
     }
 
+    public Game getGame() {
+        return game;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }
