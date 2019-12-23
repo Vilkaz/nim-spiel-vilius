@@ -1,7 +1,6 @@
 package de.holisticon.nimgamevilius.model;
 
 public class Game {
-    private static final int STARTING_MATCHES_AMOUNT = 13;
     private int matchesInStack;
     private String message;
     private Settings settings;
@@ -19,9 +18,7 @@ public class Game {
      */
     Game(Settings settings) {
         this.settings = settings;
-        matchesInStack = STARTING_MATCHES_AMOUNT;
-        settings.getWhoStarts()
-                .firstMove(this);
+        matchesInStack = DefaultValues.AMOUNT_OF_STARTING_MATCHES.getInteger();
     }
 
     int getMatchesInStack() {

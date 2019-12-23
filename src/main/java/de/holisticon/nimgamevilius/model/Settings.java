@@ -4,18 +4,16 @@ import com.google.common.base.Objects;
 
 public class Settings {
 
-    public Settings() {
-    }
 
-    public Settings(Strategy strategy, WhoStarts whoStarts) {
+    Settings(Strategy strategy, FirstTurn firstTurn) {
         this.strategy = strategy;
-        this.whoStarts = whoStarts;
+        this.firstTurn = firstTurn;
     }
 
     private Strategy strategy;
-    private WhoStarts whoStarts;
+    private FirstTurn firstTurn;
 
-    public Strategy getStrategy() {
+    Strategy getStrategy() {
         return strategy;
     }
 
@@ -23,12 +21,12 @@ public class Settings {
         this.strategy = strategy;
     }
 
-    public WhoStarts getWhoStarts() {
-        return whoStarts;
+    FirstTurn getFirstTurn() {
+        return firstTurn;
     }
 
-    public void setWhoStarts(WhoStarts whoStarts) {
-        this.whoStarts = whoStarts;
+    public void setFirstTurn(FirstTurn firstTurn) {
+        this.firstTurn = firstTurn;
     }
 
     @Override
@@ -37,11 +35,11 @@ public class Settings {
         if (o == null || getClass() != o.getClass()) return false;
         Settings settings = (Settings) o;
         return strategy == settings.strategy &&
-                whoStarts == settings.whoStarts;
+                firstTurn == settings.firstTurn;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(strategy, whoStarts);
+        return Objects.hashCode(strategy, firstTurn);
     }
 }

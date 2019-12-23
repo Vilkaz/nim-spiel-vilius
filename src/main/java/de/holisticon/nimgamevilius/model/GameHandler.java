@@ -10,6 +10,7 @@ public class GameHandler {
 
     public static Game startNewGame(Settings settings) {
         game = new Game(settings);
+        settings.getFirstTurn().makeFirstTurn(game);
         return game;
     }
 

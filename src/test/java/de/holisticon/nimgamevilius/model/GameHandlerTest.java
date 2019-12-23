@@ -8,7 +8,7 @@ class GameHandlerTest {
 
     @Test
     void init() {
-        Game game = GameHandler.startNewGame(new Settings(Strategy.WIN, WhoStarts.PLAYER));
+        Game game = GameHandler.startNewGame(new Settings(Strategy.WIN, FirstTurn.PLAYER));
         assertThat(game).isNotNull();
     }
 
