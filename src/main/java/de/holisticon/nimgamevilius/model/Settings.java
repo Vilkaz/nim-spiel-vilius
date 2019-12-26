@@ -5,7 +5,7 @@ import com.google.common.base.Objects;
 public class Settings {
 
 
-    Settings(Strategy strategy, FirstTurn firstTurn) {
+    public Settings(Strategy strategy, FirstTurn firstTurn) {
         this.strategy = strategy;
         this.firstTurn = firstTurn;
     }

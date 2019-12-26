@@ -10,7 +10,7 @@ public enum DefaultValues {
 
 
     DefaultValues(String key) {
-        this.value = ApplicationProperties.get(key);
+        this.value = ApplicationProperties.getInstance().getProperty(key);
     }
 
     public Integer getInteger() {
