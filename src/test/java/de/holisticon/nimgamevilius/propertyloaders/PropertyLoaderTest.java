@@ -8,8 +8,7 @@ class PropertyLoaderTest {
     @Test
     void readsFromFile() {
         String value = ApplicationProperties
-                .getInstance()
-                .getProperty("test.intValue");
+                .get("test.intValue");
         Assertions.assertThat(value).isEqualTo("1337");
     }
 }
