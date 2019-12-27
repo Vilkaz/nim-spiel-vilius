@@ -1,5 +1,7 @@
 package de.holisticon.nimgamevilius.model;
 
+import de.holisticon.nimgamevilius.common.Translator;
+
 /**
  * Class for Singleton instance of the Game class.
  *
@@ -19,7 +21,7 @@ public class GameHandler {
                 .withFirstTurn(settings.getFirstTurn())
                 .withMatchesInStack(settings.getStartingMatchesAmount())
                 .withStrategy(settings.getStrategy())
-                .withMessage("New Game started")
+                .withMessage(Translator.getText("game.new-game-started"))
                 .build();
 
        return game;

@@ -1,5 +1,7 @@
 package de.holisticon.nimgamevilius.model;
 
+import de.holisticon.nimgamevilius.common.Translator;
+
 public class Game {
     private int matchesInStack;
     private String message;
@@ -8,17 +10,6 @@ public class Game {
     Game() {
         // package private
     }
-
-    /**
-     * Starts a new Round of game.
-     * Initialises the default values
-     * Makes first Move if Computer Starts first
-     */
-    Game(Strategy strategy, int startingMatchesAmount) {
-        this.strategy = strategy;
-        matchesInStack = startingMatchesAmount;
-    }
-
 
     public int getMatchesInStack() {
         return matchesInStack;
@@ -30,13 +21,13 @@ public class Game {
 
     void makeMove() {
         if (matchesInStack == 0) {
-            message ="You took the last match, Computer has won !";
+            message = Translator.getText("game.computer-wins");
         } else {
             Integer matchesToTake = strategy.calculateMatchesToTake(matchesInStack);
             matchesInStack -= matchesToTake;
-            message = "Computer took this amount of matches : " + matchesToTake;
+            message = Translator.getText("game.took-amount-of-matches") + matchesToTake;
             if (matchesInStack == 0) {
-                message += "You have won ";
+                message +=  Translator.getText("game.player-wins");
             }
         }
     }
@@ -60,11 +51,11 @@ public class Game {
     void calculatePlayersTurn(int reduceMatchesBy) {
         boolean valid = true;
         if (reduceMatchesBy > matchesInStack) {
-            message = "You can't take more matches, then there are in game";
+            message = Translator.getText("validation.took-too-manny-matches");
             valid = false;
         }
         if (reduceMatchesBy < 1 || reduceMatchesBy > 3) {
-            message = "You can only pick minimal 1 and maximal 3 matches";
+            message = Translator.getText("validation.min-max-amount");
             valid = false;
         }
 

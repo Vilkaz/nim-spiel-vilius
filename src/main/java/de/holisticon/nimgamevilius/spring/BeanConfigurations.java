@@ -2,7 +2,6 @@ package de.holisticon.nimgamevilius.spring;
 
 import de.holisticon.nimgamevilius.service.GameService;
 import de.holisticon.nimgamevilius.service.GameServiceImpl;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -16,5 +15,13 @@ public class BeanConfigurations {
     GameService gameService() {
         return new GameServiceImpl();
     }
+
+//    @Bean
+//    public LocaleResolver localeResolver() {
+//        SessionLocaleResolver slr = new SessionLocaleResolver();
+//        slr.setDefaultLocale(Locale.US);
+//        return slr;
+//    }
+
 
 }
