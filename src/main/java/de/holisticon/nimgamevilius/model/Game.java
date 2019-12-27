@@ -29,30 +29,35 @@ public class Game {
     }
 
     void makeMove() {
-        Integer matchesToTake = strategy.calculateMatchesToTake(matchesInStack);
-        matchesInStack -= matchesToTake;
-        message = "Computer took this amount of matches : " + String.valueOf(matchesToTake);
-
-
+        if (matchesInStack == 0) {
+            message ="You took the last match, Computer has won !";
+        } else {
+            Integer matchesToTake = strategy.calculateMatchesToTake(matchesInStack);
+            matchesInStack -= matchesToTake;
+            message = "Computer took this amount of matches : " + matchesToTake;
+            if (matchesInStack == 0) {
+                message += "You have won ";
+            }
+        }
     }
 
     public Strategy getStrategy() {
         return strategy;
     }
 
-    public void setMatchesInStack(int matchesInStack) {
+    void setMatchesInStack(int matchesInStack) {
         this.matchesInStack = matchesInStack;
     }
 
-    public void setMessage(String message) {
+    void setMessage(String message) {
         this.message = message;
     }
 
-    public void setStrategy(Strategy strategy) {
+    void setStrategy(Strategy strategy) {
         this.strategy = strategy;
     }
 
-    public void reduceMatches(int reduceMatchesBy) {
+    void calculatePlayersTurn(int reduceMatchesBy) {
         boolean valid = true;
         if (reduceMatchesBy > matchesInStack) {
             message = "You can't take more matches, then there are in game";
@@ -65,6 +70,7 @@ public class Game {
 
         if (valid) {
             matchesInStack -= reduceMatchesBy;
+            makeMove();
         }
 
     }

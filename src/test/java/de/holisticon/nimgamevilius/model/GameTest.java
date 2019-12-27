@@ -1,27 +1,26 @@
 package de.holisticon.nimgamevilius.model;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class GameTest {
+class GameTest {
 
 
     @Test
-    public void removeValidAmountOfMatches() {
+    void removeValidAmountOfMatches() {
         Game game = GameBuilder.aGame()
                 .withFirstTurn(FirstTurn.PLAYER)
                 .withMatchesInStack(13)
-                .withStrategy(Strategy.RANDOM)
+                .withStrategy(Strategy.WIN)
                 .build();
 
-        game.reduceMatches(1);
-        assertThat(game.getMatchesInStack()).isEqualTo(12);
-        game.reduceMatches(2);
-        assertThat(game.getMatchesInStack()).isEqualTo(10);
-        game.reduceMatches(3);
-        assertThat(game.getMatchesInStack()).isEqualTo(7);
+        game.calculatePlayersTurn(1);
+        assertThat(game.getMatchesInStack()).isEqualTo(9);
+        game.calculatePlayersTurn(2);
+        assertThat(game.getMatchesInStack()).isEqualTo(5);
+        game.calculatePlayersTurn(3);
+        assertThat(game.getMatchesInStack()).isEqualTo(1);
 
     }
 }

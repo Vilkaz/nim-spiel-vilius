@@ -4,10 +4,7 @@ import com.github.lambdaexpression.annotation.RequestBodyParam;
 import de.holisticon.nimgamevilius.model.Game;
 import de.holisticon.nimgamevilius.model.Settings;
 import de.holisticon.nimgamevilius.service.GameService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Access point for the Rest communication.
@@ -37,6 +34,11 @@ public class GameController {
     @PostMapping("/play")
     public Game play(@RequestBodyParam Integer matchesToTake) {
         return gameService.play(matchesToTake);
+    }
+
+    @GetMapping("/status")
+    public Game status() {
+        return gameService.status();
     }
 
 

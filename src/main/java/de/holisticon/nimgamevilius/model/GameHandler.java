@@ -26,9 +26,11 @@ public class GameHandler {
     }
 
     public static Game play(int playerTookMatches) {
-        game.reduceMatches(playerTookMatches);
-        game.makeMove();
+        game.calculatePlayersTurn(playerTookMatches);
         return game;
     }
 
+    public static Game status() {
+        return game;
+    }
 }
