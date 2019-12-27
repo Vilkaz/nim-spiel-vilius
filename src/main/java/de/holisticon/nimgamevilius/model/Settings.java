@@ -12,8 +12,9 @@ public class Settings {
 
     private Strategy strategy;
     private FirstTurn firstTurn;
+    private int startingMatchesAmount;
 
-    Strategy getStrategy() {
+    public Strategy getStrategy() {
         return strategy;
     }
 
@@ -21,12 +22,20 @@ public class Settings {
         this.strategy = strategy;
     }
 
-    FirstTurn getFirstTurn() {
+    public FirstTurn getFirstTurn() {
         return firstTurn;
     }
 
     public void setFirstTurn(FirstTurn firstTurn) {
         this.firstTurn = firstTurn;
+    }
+
+    public int getStartingMatchesAmount() {
+        return startingMatchesAmount;
+    }
+
+    public void setStartingMatchesAmount(int startingMatchesAmount) {
+        this.startingMatchesAmount = startingMatchesAmount;
     }
 
     @Override
