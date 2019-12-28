@@ -1,6 +1,12 @@
 package de.holisticon.nimgamevilius.model;
 
+import com.google.common.base.Strings;
 import de.holisticon.nimgamevilius.common.Translator;
+
+import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
 
 public class Game {
     private int matchesInStack;
@@ -49,17 +55,23 @@ public class Game {
     }
 
     void calculatePlayersTurn(int reduceMatchesBy) {
-        boolean valid = true;
-        if (reduceMatchesBy > matchesInStack) {
-            message = Translator.getText("validation.took-too-manny-matches");
-            valid = false;
-        }
-        if (reduceMatchesBy < 1 || reduceMatchesBy > 3) {
-            message = Translator.getText("validation.min-max-amount");
-            valid = false;
-        }
+        List<Function<Integer, String>> validators =
+                List.of(
+                        i -> i > matchesInStack ?
+                                Translator.getText("validation.took-too-manny-matches")
+                                : "",
+                        i ->  i < 1 || i > 3 ?
+                                Translator.getText("validation.min-max-amount")
+                                : ""
+                );
 
-        if (valid) {
+        message = "";
+        message = validators.stream()
+                .map(v -> v.apply(reduceMatchesBy))
+                .filter(m -> !Strings.isNullOrEmpty(m))
+                .collect(Collectors.joining());
+
+        if (message.isEmpty()) {
             matchesInStack -= reduceMatchesBy;
             makeMove();
         }
