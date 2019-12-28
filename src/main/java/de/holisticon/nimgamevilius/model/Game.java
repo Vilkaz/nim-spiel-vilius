@@ -1,11 +1,6 @@
 package de.holisticon.nimgamevilius.model;
 
-import com.google.common.base.Strings;
 import de.holisticon.nimgamevilius.common.Translator;
-
-import java.util.List;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 
 public class Game {
@@ -54,27 +49,27 @@ public class Game {
         this.strategy = strategy;
     }
 
-    void calculatePlayersTurn(int reduceMatchesBy) {
-        List<Function<Integer, String>> validators =
-                List.of(
-                        i -> i > matchesInStack ?
-                                Translator.getText("validation.took-too-manny-matches")
-                                : "",
-                        i ->  i < 1 || i > 3 ?
-                                Translator.getText("validation.min-max-amount")
-                                : ""
-                );
+    void calculatePlayersTurn(PlayersMove playersMove) {
+//        List<Function<Integer, String>> validators =
+//                List.of(
+//                        i -> i > matchesInStack ?
+//                                Translator.getText("validation.took-too-manny-matches")
+//                                : "",
+//                        i ->  i < 1 || i > 3 ?
+//                                Translator.getText("validation.min-max-amount")
+//                                : ""
+//                );
+//        Integer reduceMatchesBy = playersMove.getMatchesToTake();
+//        message = "";
+//        message = validators.stream()
+//                .map(v -> v.apply(reduceMatchesBy))
+//                .filter(m -> !Strings.isNullOrEmpty(m))
+//                .collect(Collectors.joining());
 
-        message = "";
-        message = validators.stream()
-                .map(v -> v.apply(reduceMatchesBy))
-                .filter(m -> !Strings.isNullOrEmpty(m))
-                .collect(Collectors.joining());
-
-        if (message.isEmpty()) {
-            matchesInStack -= reduceMatchesBy;
+//        if (message.isEmpty()) {
+            matchesInStack -= playersMove.getMatchesToTake();
             makeMove();
-        }
+//        }
 
     }
 }

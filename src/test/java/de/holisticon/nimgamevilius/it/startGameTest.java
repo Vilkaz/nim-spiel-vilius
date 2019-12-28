@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -37,7 +38,39 @@ public class startGameTest {
 
         String contentAsString = mvcResult.getResponse().getContentAsString();
         Game game = gson.fromJson(contentAsString, Game.class);
-        System.out.println();
+        assertThat(game).isNotNull();
+    }
+
+    @Test
+    void missingParameterFirstTurn() throws Exception {
+
+        Settings settings = new Settings(Strategy.RANDOM, null);
+
+        Gson gson = new Gson();
+        MvcResult mvcResult = mvc.perform(post("/api/start")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(gson.toJson(settings)))
+                //Error status
+                .andExpect(status().is4xxClientError())
+                .andReturn();
+
+        Exception exception = mvcResult.getResolvedException();
+        assertThat(exception).isNotNull();
+    }
+    @Test
+    void missingParameterStrategy() throws Exception {
+        Settings settings = new Settings(null, FirstTurn.PLAYER);
+
+        Gson gson = new Gson();
+        MvcResult mvcResult = mvc.perform(post("/api/start")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(gson.toJson(settings)))
+                //Error status
+                .andExpect(status().is4xxClientError())
+                .andReturn();
+
+        Exception exception = mvcResult.getResolvedException();
+        assertThat(exception).isNotNull();
     }
 
 }

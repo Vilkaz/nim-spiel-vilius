@@ -27,12 +27,13 @@ public class GameHandler {
        return game;
     }
 
-    public static Game play(int playerTookMatches) {
-        game.calculatePlayersTurn(playerTookMatches);
+    public static Game play(PlayersMove playersMove) {
+        game.calculatePlayersTurn(playersMove);
         return game;
     }
 
     public static Game status() {
+        System.out.println();
         return game;
     }
 }

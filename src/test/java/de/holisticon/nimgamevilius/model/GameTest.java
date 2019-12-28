@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class GameTest {
 
-
     @Test
     void removeValidAmountOfMatches() {
         Game game = GameBuilder.aGame()
@@ -15,11 +14,15 @@ class GameTest {
                 .withStrategy(Strategy.WIN)
                 .build();
 
-        game.calculatePlayersTurn(1);
+        PlayersMove playersMove = new PlayersMove();
+        playersMove.setMatchesToTake(1);
+        game.calculatePlayersTurn(playersMove);
         assertThat(game.getMatchesInStack()).isEqualTo(9);
-        game.calculatePlayersTurn(2);
+        playersMove.setMatchesToTake(2);
+        game.calculatePlayersTurn(playersMove);
         assertThat(game.getMatchesInStack()).isEqualTo(5);
-        game.calculatePlayersTurn(3);
+        playersMove.setMatchesToTake(3);
+        game.calculatePlayersTurn(playersMove);
         assertThat(game.getMatchesInStack()).isEqualTo(1);
 
     }
