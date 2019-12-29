@@ -8,8 +8,6 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 public class MatchesToTakeValidator implements ConstraintValidator<MatchesToTake, Integer> {
-   public void initialize(MatchesToTake constraint) {
-   }
 
    public boolean isValid(Integer matchesToTake, ConstraintValidatorContext context) {
       Game currentRunningGame = GameHandler.status();
