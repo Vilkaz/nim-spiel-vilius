@@ -17,7 +17,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 /**
  * Validation if the player took a valid amount of matches.
  *
- * We are already covering the min an max, but wemust check if he is taking
+ * We are already covering the min an max, but we must check if he is taking
  * more matches that are ingame, and that is not a static value.
  *
  */
@@ -25,7 +25,7 @@ public @interface MatchesToTake {
 
     String message() default "You can't take more matches that are ingame";
 
-    Class<?>[] groups() default {};
+//    Class<?>[] groups() default {};
 
     Class<? extends PlayersMove>[] payload() default {};
 

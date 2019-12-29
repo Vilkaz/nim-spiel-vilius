@@ -24,6 +24,5 @@ class GameTest {
         playersMove.setMatchesToTake(3);
         game.calculatePlayersTurn(playersMove);
         assertThat(game.getMatchesInStack()).isEqualTo(1);
-
     }
 }

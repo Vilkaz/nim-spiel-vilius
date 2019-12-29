@@ -33,7 +33,6 @@ public class GameHandler {
     }
 
     public static Game status() {
-        System.out.println();
         return game;
     }
 }

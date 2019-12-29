@@ -7,14 +7,14 @@ import de.holisticon.nimgamevilius.model.MatchesToTake;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class MatchesToTakeValidator implements ConstraintValidator<MatchesToTake, String> {
+public class MatchesToTakeValidator implements ConstraintValidator<MatchesToTake, Integer> {
    public void initialize(MatchesToTake constraint) {
    }
 
-   public boolean isValid(String amountString, ConstraintValidatorContext context) {
-      int matchesToTake = Integer.parseInt(amountString);
+   public boolean isValid(Integer matchesToTake, ConstraintValidatorContext context) {
       Game currentRunningGame = GameHandler.status();
-      return matchesToTake <= currentRunningGame.getMatchesInStack();
+      return currentRunningGame != null &&
+              matchesToTake <= GameHandler.status().getMatchesInStack();
    }
 
 

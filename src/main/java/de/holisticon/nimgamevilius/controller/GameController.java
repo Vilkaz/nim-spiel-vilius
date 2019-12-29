@@ -38,11 +38,4 @@ public class GameController {
         return gameService.status();
     }
 
-
-
-//    @ExceptionHandler(RuntimeException.class)
-//    public final ResponseEntity<Exception> handleAllExceptions(RuntimeException ex) {
-//        return new ResponseEntity<Exception>(ex, HttpStatus.INTERNAL_SERVER_ERROR);
-//    }
-
 }
