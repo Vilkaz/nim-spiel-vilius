@@ -20,6 +20,10 @@ public class Game {
         return message;
     }
 
+    /**
+     * If we got here, then the players move was valid
+     * and he did not won yet.
+     */
     void makeMove() {
         Integer matchesToTake = strategy.calculateMatchesToTake(matchesInStack);
         matchesInStack -= matchesToTake;
@@ -45,7 +49,13 @@ public class Game {
         this.strategy = strategy;
     }
 
-    void calculatePlayersTurn(PlayersMove playersMove) {
+
+    /**
+     * Did the player won or do we have to make our own Move ?
+     *
+     * This will be decided here
+     */
+    void handlePlayersTurn(PlayersMove playersMove) {
         matchesInStack -= playersMove.getMatchesToTake();
         if (matchesInStack == 0) {
             message = Translator.getText("game.computer-wins");
@@ -53,4 +63,5 @@ public class Game {
             makeMove();
         }
     }
+
 }

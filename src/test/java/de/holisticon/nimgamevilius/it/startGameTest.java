@@ -19,13 +19,13 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-public class startGameTest {
+class startGameTest {
 
     @Autowired
     MockMvc mvc;
 
     @Test
-    void startTest() throws Exception {
+    void startingAGame() throws Exception {
 
         Settings settings = new Settings(Strategy.RANDOM, FirstTurn.PLAYER);
 
@@ -72,5 +72,6 @@ public class startGameTest {
         Exception exception = mvcResult.getResolvedException();
         assertThat(exception).isNotNull();
     }
+
 
 }

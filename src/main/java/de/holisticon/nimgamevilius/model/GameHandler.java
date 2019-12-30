@@ -28,7 +28,7 @@ public class GameHandler {
     }
 
     public static Game play(PlayersMove playersMove) {
-        game.calculatePlayersTurn(playersMove);
+        game.handlePlayersTurn(playersMove);
         return game;
     }
 

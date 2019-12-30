@@ -16,13 +16,13 @@ class GameTest {
 
         PlayersMove playersMove = new PlayersMove();
         playersMove.setMatchesToTake(1);
-        game.calculatePlayersTurn(playersMove);
+        game.handlePlayersTurn(playersMove);
         assertThat(game.getMatchesInStack()).isEqualTo(9);
         playersMove.setMatchesToTake(2);
-        game.calculatePlayersTurn(playersMove);
+        game.handlePlayersTurn(playersMove);
         assertThat(game.getMatchesInStack()).isEqualTo(5);
         playersMove.setMatchesToTake(3);
-        game.calculatePlayersTurn(playersMove);
+        game.handlePlayersTurn(playersMove);
         assertThat(game.getMatchesInStack()).isEqualTo(1);
     }
 }
