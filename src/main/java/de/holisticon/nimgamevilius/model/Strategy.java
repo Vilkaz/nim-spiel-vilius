@@ -51,7 +51,7 @@ public enum Strategy {
     private static Integer calculateWinningAmount(Integer amountOfMatches) {
         int amount = reduceAmountBy4UntilSmallerThan5(amountOfMatches);
         if (amount > 1) {
-           return --amount;
+            amount--;
         }
         return amount;
     }
