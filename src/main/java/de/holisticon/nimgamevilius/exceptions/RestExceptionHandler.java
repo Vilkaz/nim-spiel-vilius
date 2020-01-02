@@ -6,15 +6,16 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+/**
+ * Here we must handle all of Exceptions that we want to handle on this API.
+ */
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
-/**
- * Here we can handle all of Exceptions, we want to handle on this API.
- */
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
@@ -22,6 +23,17 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         String error = "Invalid JSON request";
         return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, error, ex));
     }
+
+
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
+        String error = "Invalid Argument";
+        return buildResponseEntity(new ApiError(HttpStatus.BAD_REQUEST, error, ex));
+    }
+
+
+
 
     private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
         return new ResponseEntity<>(apiError, apiError.getStatus());

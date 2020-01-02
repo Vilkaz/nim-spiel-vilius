@@ -14,15 +14,11 @@ class GameTest {
                 .withStrategy(Strategy.WIN)
                 .build();
 
-        PlayersMove playersMove = new PlayersMove();
-        playersMove.setMatchesToTake(1);
-        game.handlePlayersTurn(playersMove);
+        game.handlePlayersTurn(1);
         assertThat(game.getMatchesInStack()).isEqualTo(9);
-        playersMove.setMatchesToTake(2);
-        game.handlePlayersTurn(playersMove);
+        game.handlePlayersTurn(2);
         assertThat(game.getMatchesInStack()).isEqualTo(5);
-        playersMove.setMatchesToTake(3);
-        game.handlePlayersTurn(playersMove);
+        game.handlePlayersTurn(3);
         assertThat(game.getMatchesInStack()).isEqualTo(1);
     }
 }

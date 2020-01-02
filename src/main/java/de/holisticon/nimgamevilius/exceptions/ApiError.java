@@ -5,6 +5,9 @@ import org.springframework.http.HttpStatus;
 
 import java.time.LocalDateTime;
 
+/**
+ * Custom Error message.
+ */
 public class ApiError {
 
     private HttpStatus status;
@@ -66,6 +69,16 @@ public class ApiError {
 
     public void setDebugMessage(String debugMessage) {
         this.debugMessage = debugMessage;
+    }
+
+    @Override
+    public String toString() {
+        return "ApiError{" +
+                "status=" + status +
+                ", timestamp=" + timestamp +
+                ", message='" + message + '\'' +
+                ", debugMessage='" + debugMessage + '\'' +
+                '}';
     }
 }
 

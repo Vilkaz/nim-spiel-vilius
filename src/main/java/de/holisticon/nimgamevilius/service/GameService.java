@@ -1,11 +1,11 @@
 package de.holisticon.nimgamevilius.service;
 
 import de.holisticon.nimgamevilius.model.Game;
+import de.holisticon.nimgamevilius.model.GameStarter;
 import de.holisticon.nimgamevilius.model.PlayersMove;
-import de.holisticon.nimgamevilius.model.Settings;
 
 public interface GameService {
-    Game startNewGame(Settings settings);
+    Game startNewGame(GameStarter gameStarter);
     Game play(PlayersMove playersMove);
     Game status();
 }

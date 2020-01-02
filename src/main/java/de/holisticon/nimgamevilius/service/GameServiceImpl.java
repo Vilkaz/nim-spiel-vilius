@@ -1,9 +1,6 @@
 package de.holisticon.nimgamevilius.service;
 
-import de.holisticon.nimgamevilius.model.Game;
-import de.holisticon.nimgamevilius.model.GameHandler;
-import de.holisticon.nimgamevilius.model.PlayersMove;
-import de.holisticon.nimgamevilius.model.Settings;
+import de.holisticon.nimgamevilius.model.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +11,8 @@ public class GameServiceImpl implements GameService{
     private Integer startingMatchesAmount;
 
     @Override
-    public Game startNewGame(Settings settings) {
+    public Game startNewGame(GameStarter gameStarter) {
+        Settings settings= new Settings(gameStarter, startingMatchesAmount);
         settings.setStartingMatchesAmount(startingMatchesAmount);
         return GameHandler.startGame(settings);
     }

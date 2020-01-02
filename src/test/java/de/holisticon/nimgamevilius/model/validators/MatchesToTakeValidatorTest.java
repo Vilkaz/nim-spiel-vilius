@@ -9,30 +9,30 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest
-public class MatchesToTakeValidatorTest {
+class MatchesToTakeValidatorTest {
 
 
     @Test
-    public void validMove() {
+    void validMove() {
         MatchesToTakeValidator validator = new MatchesToTakeValidator();
-        Settings settings = new Settings(Strategy.RANDOM, FirstTurn.COMPUTER);
-        settings.setStartingMatchesAmount(13);
+        GameStarter gameStarter = new GameStarter(Strategy.RANDOM, FirstTurn.PLAYER);
+        Settings settings = new Settings(gameStarter, 13);
         GameHandler.startGame(settings);
         assertTrue(validator.isValid(2, null));
     }
     @Test
-    public void invalidMoveByStartingValue() {
+    void invalidMoveByStartingValue() {
         MatchesToTakeValidator validator = new MatchesToTakeValidator();
-        Settings settings = new Settings(Strategy.RANDOM, FirstTurn.COMPUTER);
-        settings.setStartingMatchesAmount(2);
+        GameStarter gameStarter = new GameStarter(Strategy.RANDOM, FirstTurn.PLAYER);
+        Settings settings = new Settings(gameStarter, 2);
         GameHandler.startGame(settings);
         assertFalse(validator.isValid(3, null));
     }
 
     @Test
-    public void invalidMoveByRunningGame() {
-        Settings settings = new Settings(Strategy.WIN, FirstTurn.PLAYER);
-        settings.setStartingMatchesAmount(13);
+    void invalidMoveByRunningGame() {
+        GameStarter gameStarter = new GameStarter(Strategy.WIN, FirstTurn.PLAYER);
+        Settings settings = new Settings(gameStarter, 13);
         GameHandler.startGame(settings);
 
         PlayersMove playersMove = new PlayersMove();

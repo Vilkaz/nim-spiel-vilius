@@ -2,7 +2,10 @@ package de.holisticon.nimgamevilius.model;
 
 import de.holisticon.nimgamevilius.common.Translator;
 
-
+/**
+ * The actual game. We are giving this as response to the player,
+ * with all fields as information.
+ */
 public class Game {
     private int matchesInStack;
     private String message;
@@ -55,8 +58,8 @@ public class Game {
      *
      * This will be decided here
      */
-    void handlePlayersTurn(PlayersMove playersMove) {
-        matchesInStack -= playersMove.getMatchesToTake();
+    void handlePlayersTurn(Integer matchesPlayerTook) {
+        matchesInStack -= matchesPlayerTook;
         if (matchesInStack == 0) {
             message = Translator.getText("game.computer-wins");
         } else {

@@ -6,6 +6,10 @@ import org.springframework.stereotype.Component;
 
 import java.util.Locale;
 
+/**
+ * Gets the Strings from the language propperty file.
+ * For Demo, hardcoded in english.
+ */
 @Component
 public class Translator {
 
@@ -16,6 +20,10 @@ public class Translator {
         Translator.messageSource = messageSource;
     }
 
+    /**
+     * For production usage, we would change the hardcoded english
+     * with LocaleSupplier.
+     */
     public static String getText(String msg) {
         return messageSource.getMessage(msg, null, Locale.ENGLISH);
     }

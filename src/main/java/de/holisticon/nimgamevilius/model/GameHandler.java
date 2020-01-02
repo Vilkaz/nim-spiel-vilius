@@ -28,7 +28,11 @@ public class GameHandler {
     }
 
     public static Game play(PlayersMove playersMove) {
-        game.handlePlayersTurn(playersMove);
+        //In this case i simply take the int value.
+        //I just dont want to give the API entry 1::1.
+        //Eventually we need to change API or game logic Model
+        //here i would map it.
+        game.handlePlayersTurn(playersMove.getMatchesToTake());
         return game;
     }
 

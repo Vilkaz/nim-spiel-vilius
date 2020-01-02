@@ -1,8 +1,5 @@
 package de.holisticon.nimgamevilius.model;
 
-import javax.validation.constraints.NotNull;
-
-
 /**
  * Contains starting settings for a game.
  *
@@ -10,19 +7,18 @@ import javax.validation.constraints.NotNull;
  */
 public class Settings {
 
-    public Settings(Strategy strategy, FirstTurn firstTurn) {
-        this.strategy = strategy;
-        this.firstTurn = firstTurn;
-    }
-
-    @NotNull(message = "Please enter Strategy for Computer. Keyword = \"strategy\" possible values = \"RANDOM\", \"WIN\"")
     private Strategy strategy;
-    @NotNull(message = "Please enter who got first turn. Key = \"firstTurn\" possible values = \"COMPUTER\", \"PLAYER\"")
     private FirstTurn firstTurn;
 
     private int startingMatchesAmount;
 
-    public Strategy getStrategy() {
+    public Settings(GameStarter gameStarter, Integer startingMatchesAmount) {
+        strategy = gameStarter.getStrategy();
+        firstTurn = gameStarter.getFirstTurn();
+        this.startingMatchesAmount = startingMatchesAmount;
+    }
+
+    Strategy getStrategy() {
         return strategy;
     }
 
@@ -30,7 +26,7 @@ public class Settings {
         this.strategy = strategy;
     }
 
-    public FirstTurn getFirstTurn() {
+    FirstTurn getFirstTurn() {
         return firstTurn;
     }
 
@@ -38,7 +34,7 @@ public class Settings {
         this.firstTurn = firstTurn;
     }
 
-    public int getStartingMatchesAmount() {
+    int getStartingMatchesAmount() {
         return startingMatchesAmount;
     }
 

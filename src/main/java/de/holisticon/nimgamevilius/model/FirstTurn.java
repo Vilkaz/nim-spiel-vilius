@@ -2,6 +2,9 @@ package de.holisticon.nimgamevilius.model;
 
 import java.util.function.Consumer;
 
+/**
+ * Enum to decide who makes the first turn, player or computer.
+ */
 public enum FirstTurn {
 
     /**
