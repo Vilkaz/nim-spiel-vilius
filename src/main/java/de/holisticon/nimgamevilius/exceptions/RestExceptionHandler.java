@@ -13,6 +13,10 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 /**
  * Here we must handle all of Exceptions that we want to handle on this API.
+ *
+ * I dod not catched all tha cases here, because business often needs to dictate the logic.
+ *
+ * Like what error msg do you want to show, if somebody is playing a game, but not started it yet, etc.
  */
 @Order(Ordered.HIGHEST_PRECEDENCE)
 @ControllerAdvice
