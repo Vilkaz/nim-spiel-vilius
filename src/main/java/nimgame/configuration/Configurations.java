@@ -18,12 +18,6 @@ public class Configurations {
 
     private static final String CONTROLLER_PACKAGE = "de.holisticon.nimgamevilius.controller";
 
-//    @Primary
-//    @Bean(name = "GameService")
-//    GameService gameService() {
-//        return new GameServiceImpl(gameRepository());
-//    }
-
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2)

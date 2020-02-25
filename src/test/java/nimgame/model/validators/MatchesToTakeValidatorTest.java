@@ -8,43 +8,36 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 class MatchesToTakeValidatorTest {
 
-    @Autowired
-    GameService gameService;
-    @Autowired
-    MatchesToTakeValidator validator;
-
-
     @Test
     void validMove() {
-        GameStarter gameStarter = new GameStarter(Strategy.RANDOM, FirstTurn.PLAYER);
-        gameService.startNewGame(gameStarter);
+        Game game = GameBuilder.aGame()
+                .withFirstTurn(FirstTurn.COMPUTER)
+                .withMatchesInStack(13)
+                .withStrategy(Strategy.WIN)
+                .build();
+        GameService gameService = mock(GameService.class);
+        MatchesToTakeValidator validator = new MatchesToTakeValidator(gameService);
+        when(gameService.loadGame()).thenReturn(game);
         assertTrue(validator.isValid(2, null));
     }
+
     @Test
-    void invalidMoveByStartingValue() {
-        GameStarter gameStarter = new GameStarter(Strategy.RANDOM, FirstTurn.PLAYER);
-        gameService.startNewGame(gameStarter);
-        Game game = gameService.loadGame();
-        game.setMatchesInStack(2);
-        gameService.saveGame(game);
+    void invalidMove() {
+        Game game = GameBuilder.aGame()
+                .withFirstTurn(FirstTurn.COMPUTER)
+                .withMatchesInStack(2)
+                .withStrategy(Strategy.WIN)
+                .build();
+        GameService gameService = mock(GameService.class);
+        MatchesToTakeValidator validator = new MatchesToTakeValidator(gameService);
+        when(gameService.loadGame()).thenReturn(game);
         assertFalse(validator.isValid(3, null));
     }
 
-    @Test
-    void invalidMoveByRunningGame() {
-        GameStarter gameStarter = new GameStarter(Strategy.WIN, FirstTurn.PLAYER);
-        gameService.startNewGame(gameStarter);
-
-        PlayersMove playersMove = new PlayersMove();
-        playersMove.setMatchesToTake(1);
-        gameService.play(playersMove); //matches in stack = 9
-        gameService.play(playersMove);//matches in stack = 5
-        gameService.play(playersMove); //matches in stack = 1
-
-        assertFalse(validator.isValid(3, null));
-    }
 }

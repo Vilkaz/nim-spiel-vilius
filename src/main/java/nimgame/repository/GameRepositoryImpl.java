@@ -17,6 +17,7 @@ public class GameRepositoryImpl implements GameRepository {
     private static Game game;
 
     public Game saveGame(Game game) {
+        //replacement of Database call ... Kata did not included Database
         GameRepositoryImpl.game = game;
         //Sometimes the Objects are getting IDs after save, so i return the saved Object
         return game;

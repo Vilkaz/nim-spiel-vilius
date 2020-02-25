@@ -28,5 +28,4 @@ public class MatchesToTakeValidator implements ConstraintValidator<MatchesToTake
               matchesToTake <= service.loadGame().getMatchesInStack();
    }
 
-
 }
